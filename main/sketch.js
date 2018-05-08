@@ -4,7 +4,7 @@ var init_x = 500;
 var init_y = 600;
 var x_increas;
 var y_increas;
-var main_state = 3;
+var main_state = 1;
 var intro_video;
 var but_down;
 var but_down_prev;
@@ -18,6 +18,16 @@ var used_for_state_15 = false;
 var used_for_state_16 = false;
 var show_map = false;
 var times_of_but_up = 0;
+var times_for_audio = 0
+
+function preload() {
+    sound_test = loadSound("media/audios/test.wav");
+    sound_test_2 = loadSound("media/audios/test_2.wav");
+    intro_video = createVideo(['media/videos/Intro_sequence.mp4']);
+    intro_video.hide();
+
+}
+
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -63,9 +73,7 @@ function setup() {
 
     map_1 = loadImage("media/pics/map.png")
 
-    intro_video = createVideo(['media/videos/Intro_sequence.mp4']);
-    intro_video.hide();
-    intro_video.autoplay();
+    // sound_test.play();
 }
 
 
@@ -121,6 +129,11 @@ function draw() {
     // INTRO VIDEO
     if (main_state === 1) {
         image(intro_video, 0, 0, windowWidth, windowHeight);
+        // if (!intro_video.isPlaying()){
+        //     intro_video.play();
+        // }
+        intro_video.play();
+
         intro_video.onended(function () {
             main_state = 2;
         })
@@ -192,6 +205,12 @@ function draw() {
         image(bedroom_bed, 0, 0, windowWidth, windowHeight);
         image(sign3, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
         image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        // if (!sound_test.isPlaying() && times_for_audio === 0) {
+        //     sound_test.play();
+        //     times_for_audio += 1;
+
+        // }
+
 
         if (but_down === 1 && but_down_prev === 0) {
             main_state = 6;
@@ -485,7 +504,7 @@ function draw() {
     }
 
     if (but_up === 0 && but_up_prev === 1) {
-        if (times_of_but_up === 2){
+        if (times_of_but_up === 2) {
             show_map = false
             times_of_but_up = 0;
         }
@@ -496,6 +515,10 @@ function draw() {
 
     if (show_map === true) {
         image(map_1, 0, 0);
+        // if (!sound_test.isPlaying()) {
+        //     // sound_test.play();
+        //     // sound_test.noLoop();
+        // }
     }
 
 
@@ -504,8 +527,6 @@ function draw() {
 
     x_increas = int(map(joy_x, 133, 219, 0, 10));
     y_increas = int(map(joy_y, 129, 216, 0, 10));
-
-    console.log(x_increas);
 
     init_x += x_increas;
     init_y -= y_increas;
