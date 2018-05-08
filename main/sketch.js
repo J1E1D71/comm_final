@@ -8,12 +8,16 @@ var main_state = 3;
 var intro_video;
 var but_down;
 var but_down_prev;
+var but_up;
+var but_up_prev;
 var left_pics;
 var number_for_iter = 0;
 var used_for_state_13 = false;
 var used_for_state_14 = false;
 var used_for_state_15 = false;
 var used_for_state_16 = false;
+var show_map = false;
+var times_of_but_up = 0;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -57,41 +61,41 @@ function setup() {
     note_boxing = loadImage("media/pics/note_boxing.jpg");
     note_poster = loadImage("media/pics/note_poster.jpg");
 
+    map_1 = loadImage("media/pics/map.png")
+
     intro_video = createVideo(['media/videos/Intro_sequence.mp4']);
     intro_video.hide();
     intro_video.autoplay();
-
 }
+
+
 
 function serverConnected() {
     println("Connected to Server");
 }
-
 function gotList(thelist) {
     println("List of Serial Ports:");
     for (var i = 0; i < thelist.length; i++) {
         println(i + " " + thelist[i]);
     }
 }
-
 function gotOpen() {
     println("Serial Port is Open");
 }
-
 function gotError(theerror) {
     println(theerror);
 }
-
 function gotData() {
     var currentString = serial.readLine();
     trim(currentString);
     if (!currentString) return;
     latestData = currentString;
 }
-
 function gotRawData(thedata) {
     println("gotRawData" + thedata);
 }
+
+
 
 function draw() {
 
@@ -473,6 +477,25 @@ function draw() {
 
     }
 
+    if (but_up === 1 && but_up_prev === 0) {
+        show_map = true;
+        but_down_prev = 1;
+    }
+
+    if (but_up === 0 && but_up_prev === 1) {
+        if (times_of_but_up === 2){
+            show_map = false
+            times_of_but_up = 0;
+        }
+        but_down_prev = 1;
+        times_of_but_up += 1;
+    }
+
+
+    if (show_map === true) {
+        image(map_1, 0, 0);
+    }
+
 
     // strokeWeight(3);
     // ellipse(init_x, init_y, 20, 20);
@@ -486,6 +509,7 @@ function draw() {
     init_y -= y_increas;
 
     but_down_prev = but_down;
+    but_up_prev = but_up;
 
 
 
