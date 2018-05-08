@@ -2,12 +2,18 @@ var serial;
 var latestData = "waiting for data";
 var init_x = 500;
 var init_y = 600;
-var main_state = 1;
+var x_increas;
+var y_increas;
+var main_state = 3;
 var intro_video;
-var delay;
 var but_down;
 var but_down_prev;
-
+var left_pics;
+var number_for_iter = 0;
+var used_for_state_13 = false;
+var used_for_state_14 = false;
+var used_for_state_15 = false;
+var used_for_state_16 = false;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -21,16 +27,39 @@ function setup() {
     serial.on('error', gotError);
     serial.on('open', gotOpen);
 
-    img1 = loadImage("media/pics/big_one.jpg");
-    img2 = loadImage("media/pics/stand1.png");
+    bedroom_bed = loadImage("media/pics/bedroom_bed.jpg");
+    bedroom_bed_update = loadImage("media/pics/bedroom_bed_update.jpg");
+    bedroom_posterwall = loadImage("media/pics/bedroom_posterwall.jpg");
+    bedroom_tvwall = loadImage("media/pics/bedroom_tvwall.jpg");
+
+    stand = loadImage("media/pics/stand1.png");
+    stand_left_1 = loadImage("media/pics/stand_left_1.png");
+    stand_left_2 = loadImage("media/pics/stand_left_2.png");
+    stand_left_3 = loadImage("media/pics/stand_left_3.png");
+    stand_left_4 = loadImage("media/pics/stand_left_4.png");
+    stand_left_5 = loadImage("media/pics/stand_left_5.png");
+    stand_left_6 = loadImage("media/pics/stand_left_6.png");
+    stand_left_7 = loadImage("media/pics/stand_left_7.png");
+    stand_left_8 = loadImage("media/pics/stand_left_8.png");
+
+    left_pics = [stand_left_1, stand_left_2, stand_left_3, stand_left_4, stand_left_5, stand_left_6, stand_left_7, stand_left_8];
+
+    sign1 = loadImage("media/pics/sign_1.jpg");
+    sign2 = loadImage("media/pics/sign_2.jpg");
+    sign3 = loadImage("media/pics/sign_3.jpg");
+    sign4 = loadImage("media/pics/sign_4.jpg");
+    sign5 = loadImage("media/pics/sign_5.jpg");
+    sign6 = loadImage("media/pics/sign_6.jpg");
+    sign7 = loadImage("media/pics/sign_7.jpg");
+    sign8 = loadImage("media/pics/sign_8.jpg");
+    sign9 = loadImage("media/pics/sign_9.jpg");
+
+    note_boxing = loadImage("media/pics/note_boxing.jpg");
+    note_poster = loadImage("media/pics/note_poster.jpg");
 
     intro_video = createVideo(['media/videos/Intro_sequence.mp4']);
     intro_video.hide();
     intro_video.autoplay();
-
-    delay = new p5.Delay();
-
-    but_down = 0;
 
 }
 
@@ -78,14 +107,14 @@ function draw() {
     var acc_x = parseInt(total_data[2]);
     var acc_y = parseInt(total_data[3]);
     var acc_x = parseInt(total_data[4]);
-    // var but_down = parseInt(total_data[5]);
+    var but_down = parseInt(total_data[5]);
     var but_up = parseInt(total_data[6]);
 
     // console.log(main_state);
-    console.log("but_down" + but_down);
-    console.log("but_down_prev" + but_down_prev);
+    // console.log("but_down" + but_down);
+    // console.log("but_down_prev" + but_down_prev);
 
-
+    // INTRO VIDEO
     if (main_state === 1) {
         image(intro_video, 0, 0, windowWidth, windowHeight);
         intro_video.onended(function () {
@@ -94,10 +123,13 @@ function draw() {
 
         if (but_down === 1 && but_down_prev === 0) {
             main_state = 2;
+            but_down_prev = 1
+            intro_video.stop();
         }
     }
 
-    if (main_state === 2) {
+    // GAME TITLE
+    else if (main_state === 2) {
         textAlign(CENTER, CENTER);
         textSize(320);
         fill(0);
@@ -110,17 +142,345 @@ function draw() {
         }
     }
 
-    if (main_state === 3) {
-        image(img1, 0, 0, windowWidth, windowHeight);
+
+    // INTRO SIGNS
+    else if (main_state === 3) {
+
+
+        image(bedroom_bed, 0, 0, windowWidth, windowHeight);
+        image(sign1, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        if (but_down === 1 && but_down_prev === 0) {
+            main_state = 4;
+        }
+
+        if (init_x > windowWidth * (0.7)) {
+            init_x = windowWidth * (0.7);
+        }
+
+        if (init_x < windowWidth * (-0.2)) {
+            init_x = windowWidth * (-0.2);
+        }
+
+    }
+
+    else if (main_state === 4) {
+        image(bedroom_bed, 0, 0, windowWidth, windowHeight);
+        image(sign2, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        if (but_down === 1 && but_down_prev === 0) {
+            main_state = 5;
+        }
+
+        if (init_x > windowWidth * (0.7)) {
+            init_x = windowWidth * (0.7);
+        }
+
+        if (init_x < windowWidth * (-0.2)) {
+            init_x = windowWidth * (-0.2);
+        }
+
+    }
+
+    else if (main_state === 5) {
+        image(bedroom_bed, 0, 0, windowWidth, windowHeight);
+        image(sign3, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        if (but_down === 1 && but_down_prev === 0) {
+            main_state = 6;
+        }
+
+        if (init_x > windowWidth * (0.7)) {
+            init_x = windowWidth * (0.7);
+        }
+
+        if (init_x < windowWidth * (-0.2)) {
+            init_x = windowWidth * (-0.2);
+        }
+
+    }
+
+    else if (main_state === 6) {
+        image(bedroom_bed, 0, 0, windowWidth, windowHeight);
+        image(sign4, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        if (but_down === 1 && but_down_prev === 0) {
+            main_state = 7;
+        }
+
+        if (init_x > windowWidth * (0.7)) {
+            init_x = windowWidth * (0.7);
+        }
+
+        if (init_x < windowWidth * (-0.2)) {
+            init_x = windowWidth * (-0.2);
+        }
+
+    }
+
+    else if (main_state === 7) {
+        image(bedroom_bed, 0, 0, windowWidth, windowHeight);
+        image(sign5, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        if (but_down === 1 && but_down_prev === 0) {
+            main_state = 8;
+        }
+
+        if (init_x > windowWidth * (0.7)) {
+            init_x = windowWidth * (0.7);
+        }
+
+        if (init_x < windowWidth * (-0.2)) {
+            init_x = windowWidth * (-0.2);
+        }
+
+    }
+    else if (main_state === 8) {
+        image(bedroom_bed, 0, 0, windowWidth, windowHeight);
+        image(sign6, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        if (but_down === 1 && but_down_prev === 0) {
+            main_state = 9;
+        }
+
+        if (init_x > windowWidth * (0.7)) {
+            init_x = windowWidth * (0.7);
+        }
+
+        if (init_x < windowWidth * (-0.2)) {
+            init_x = windowWidth * (-0.2);
+        }
+
+    }
+
+    else if (main_state === 9) {
+        image(bedroom_bed, 0, 0, windowWidth, windowHeight);
+        image(sign7, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        if (but_down === 1 && but_down_prev === 0) {
+            main_state = 10;
+        }
+
+        if (init_x > windowWidth * (0.7)) {
+            init_x = windowWidth * (0.7);
+        }
+
+        if (init_x < windowWidth * (-0.2)) {
+            init_x = windowWidth * (-0.2);
+        }
+
+    }
+
+    else if (main_state === 10) {
+        image(bedroom_bed, 0, 0, windowWidth, windowHeight);
+        image(sign8, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        if (but_down === 1 && but_down_prev === 0) {
+            main_state = 11;
+        }
+
+        if (init_x > windowWidth * (0.7)) {
+            init_x = windowWidth * (0.7);
+        }
+
+        if (init_x < windowWidth * (-0.2)) {
+            init_x = windowWidth * (-0.2);
+        }
+
+    }
+
+    else if (main_state === 11) {
+        image(bedroom_bed, 0, 0, windowWidth, windowHeight);
+        image(sign9, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        if (but_down === 1 && but_down_prev === 0) {
+            main_state = 12;
+        }
+
+        if (init_x > windowWidth * (0.7)) {
+            init_x = windowWidth * (0.7);
+        }
+
+        if (init_x < windowWidth * (-0.2)) {
+            init_x = windowWidth * (-0.2);
+        }
 
     }
 
 
-    strokeWeight(3);
-    ellipse(init_x, init_y, 20, 20);
+    // BED INITIAL
+    else if (main_state === 12) {
+        if (x_increas < 0) {
+            number_for_iter++;
+        }
 
-    var x_increas = int(map(joy_x, 133, 219, 0, 7));
-    var y_increas = int(map(joy_y, 129, 216, 0, 7));
+        var pic_index = int(number_for_iter / 2) % 8;
+
+        image(bedroom_bed, 0, 0, windowWidth, windowHeight);
+        image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        if (init_x > windowWidth * 0.6 && init_x < windowWidth * 0.7) {
+            image(bedroom_bed_update, 0, 0, windowWidth, windowHeight);
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            image(note_boxing, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+        }
+
+        if (init_x < windowWidth * (-0.2)) {
+            main_state = 15;
+        }
+
+        if (init_x > windowWidth * (0.8)) {
+            main_state = 16;
+        }
+    }
+
+    // BED FROM LEFT
+    else if (main_state === 13) {
+        used_for_state_15 = false;
+
+        if (x_increas < 0) {
+            number_for_iter++;
+        }
+
+        if (used_for_state_13 === false) {
+            init_x = windowWidth * (-0.19);
+        }
+
+        var pic_index = int(number_for_iter / 2) % 8;
+
+        image(bedroom_bed, 0, 0, windowWidth, windowHeight);
+        image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        if (init_x > windowWidth * 0.6 && init_x < windowWidth * 0.7) {
+            image(bedroom_bed_update, 0, 0, windowWidth, windowHeight);
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            image(note_boxing, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+        }
+
+        if (init_x < windowWidth * (-0.2)) {
+            main_state = 15;
+        }
+
+        if (init_x > windowWidth * (0.8)) {
+            main_state = 16;
+        }
+
+        used_for_state_13 = true;
+    }
+
+    // BED FROM RIGHT
+    else if (main_state === 14) {
+        used_for_state_16 = false;
+
+        if (used_for_state_14 === false) {
+            init_x = windowWidth * 0.7;
+        }
+
+        if (x_increas < 0) {
+            number_for_iter++;
+        }
+
+        var pic_index = int(number_for_iter / 2) % 8;
+
+        image(bedroom_bed, 0, 0, windowWidth, windowHeight);
+        image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        if (init_x > windowWidth * 0.6 && init_x < windowWidth * 0.7) {
+            image(bedroom_bed_update, 0, 0, windowWidth, windowHeight);
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            image(note_boxing, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+        }
+
+        if (init_x < windowWidth * (-0.2)) {
+            main_state = 15;
+        }
+
+        if (init_x > windowWidth * (0.8)) {
+            main_state = 16;
+        }
+
+        used_for_state_14 = true;
+    }
+
+
+
+    // POSTER WALL
+    else if (main_state === 15) {
+        used_for_state_13 = false;
+        used_for_state_14 = false;
+
+
+        if (used_for_state_15 === false) {
+            init_x = windowWidth * 0.7;
+        }
+
+        image(bedroom_posterwall, 0, 0, windowWidth, windowHeight);
+        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        if (init_x > windowWidth * (0.8)) {
+            main_state = 13;
+        }
+
+        used_for_state_15 = true;
+
+        // if (init_x > windowWidth * 0.6 && init_x < windowWidth * 0.7) {
+        //     image(bedroom_bed_update, 0, 0, windowWidth, windowHeight);
+        //     image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        //     image(note_boxing, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8)
+        // }
+
+
+    }
+
+
+    // TV WALL
+    else if (main_state === 16) {
+        used_for_state_13 = false;
+        used_for_state_14 = false;
+
+        if (used_for_state_16 === false) {
+            init_x = windowWidth * (-0.19);
+        }
+
+        image(bedroom_tvwall, 0, 0, windowWidth, windowHeight);
+        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        if (init_x < windowWidth * (-0.2)) {
+            main_state = 14;
+        }
+
+        if (init_x > windowWidth * (0.7)) {
+            init_x = windowWidth * (0.7);
+        }
+
+        used_for_state_16 = true;
+
+        // if (init_x > windowWidth * 0.6 && init_x < windowWidth * 0.7) {
+        //     image(bedroom_bed_update, 0, 0, windowWidth, windowHeight);
+        //     image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        //     image(note_boxing, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8)
+        // }
+
+
+    }
+
+
+    // strokeWeight(3);
+    // ellipse(init_x, init_y, 20, 20);
+
+    x_increas = int(map(joy_x, 133, 219, 0, 10));
+    y_increas = int(map(joy_y, 129, 216, 0, 10));
+
+    console.log(x_increas);
 
     init_x += x_increas;
     init_y -= y_increas;
@@ -129,12 +489,4 @@ function draw() {
 
 
 
-}
-
-function keyPressed() {
-    if (keyCode === 80) {
-        but_down = 1;
-    } else {
-        but_down = 0;
-    }
 }
