@@ -140,6 +140,6 @@ function draw() {
 }
 */
 
-    delay.delayTime(1);
+    // delay.delayTime(1);
 
 }
