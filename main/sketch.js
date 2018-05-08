@@ -4,13 +4,14 @@ var init_x = 500;
 var init_y = 600;
 var x_increas;
 var y_increas;
-var main_state = 1;
+var main_state = 12;
 var intro_video;
 var but_down;
 var but_down_prev;
 var but_up;
 var but_up_prev;
 var left_pics;
+var right_pics;
 var number_for_iter = 0;
 var used_for_state_13 = false;
 var used_for_state_14 = false;
@@ -23,8 +24,8 @@ var times_for_audio = 0
 function preload() {
     sound_test = loadSound("media/audios/test.wav");
     sound_test_2 = loadSound("media/audios/test_2.wav");
-    intro_video = createVideo(['media/videos/Intro_sequence.mp4']);
-    intro_video.hide();
+    // intro_video = createVideo(['media/videos/Intro_sequence.mp4']);
+    // intro_video.hide();
 
 }
 
@@ -44,19 +45,32 @@ function setup() {
     bedroom_bed = loadImage("media/pics/bedroom_bed.jpg");
     bedroom_bed_update = loadImage("media/pics/bedroom_bed_update.jpg");
     bedroom_posterwall = loadImage("media/pics/bedroom_posterwall.jpg");
+    bedroom_posterwall_update_1 = loadImage("media/pics/bedroom_posterwall_update_1.jpg");
+    bedroom_posterwall_update_2 = loadImage("media/pics/bedroom_posterwall_update_2.jpg");
+    bedroom_posterwall_update_3 = loadImage("media/pics/bedroom_posterwall_update_3.jpg");
+    poster_1 = loadImage("media/pics/poster_1.jpg");
+    poster_2 = loadImage("media/pics/poster_2.jpg");
+    poster_3 = loadImage("media/pics/poster_3.jpg");
     bedroom_tvwall = loadImage("media/pics/bedroom_tvwall.jpg");
 
-    stand = loadImage("media/pics/stand1.png");
+    stand = loadImage("media/pics/stand.png");
     stand_left_1 = loadImage("media/pics/stand_left_1.png");
     stand_left_2 = loadImage("media/pics/stand_left_2.png");
     stand_left_3 = loadImage("media/pics/stand_left_3.png");
     stand_left_4 = loadImage("media/pics/stand_left_4.png");
     stand_left_5 = loadImage("media/pics/stand_left_5.png");
     stand_left_6 = loadImage("media/pics/stand_left_6.png");
-    stand_left_7 = loadImage("media/pics/stand_left_7.png");
-    stand_left_8 = loadImage("media/pics/stand_left_8.png");
 
-    left_pics = [stand_left_1, stand_left_2, stand_left_3, stand_left_4, stand_left_5, stand_left_6, stand_left_7, stand_left_8];
+    stand_right_1 = loadImage("media/pics/stand_right_1.png");
+    stand_right_2 = loadImage("media/pics/stand_right_2.png");
+    stand_right_3 = loadImage("media/pics/stand_right_3.png");
+    stand_right_4 = loadImage("media/pics/stand_right_4.png");
+    stand_right_5 = loadImage("media/pics/stand_right_5.png");
+    stand_right_6 = loadImage("media/pics/stand_right_6.png");
+
+
+    left_pics = [stand_left_1, stand_left_2, stand_left_3, stand_left_4, stand_left_5, stand_left_6];
+    right_pics = [stand_right_1, stand_right_2, stand_right_3, stand_right_4, stand_right_5, stand_right_6];
 
     sign1 = loadImage("media/pics/sign_1.jpg");
     sign2 = loadImage("media/pics/sign_2.jpg");
@@ -132,11 +146,11 @@ function draw() {
         // if (!intro_video.isPlaying()){
         //     intro_video.play();
         // }
-        intro_video.play();
+        // intro_video.play();
 
-        intro_video.onended(function () {
-            main_state = 2;
-        })
+        // intro_video.onended(function () {
+        //     main_state = 2;
+        // })
 
         if (but_down === 1 && but_down_prev === 0) {
             main_state = 2;
@@ -166,7 +180,21 @@ function draw() {
 
         image(bedroom_bed, 0, 0, windowWidth, windowHeight);
         image(sign1, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
-        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        // person move
+        if (x_increas < 0 || x_increas > 0) {
+            number_for_iter++;
+        }
+        var pic_index = int(number_for_iter / 3) % 6;
+        if (x_increas === 0) {
+            image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        } else if (x_increas < 0) {
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        } else if (x_increas > 0) {
+            image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        }
+        // person move ends
 
         if (but_down === 1 && but_down_prev === 0) {
             main_state = 4;
@@ -185,7 +213,20 @@ function draw() {
     else if (main_state === 4) {
         image(bedroom_bed, 0, 0, windowWidth, windowHeight);
         image(sign2, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
-        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        // person move
+        if (x_increas < 0 || x_increas > 0) {
+            number_for_iter++;
+        }
+        var pic_index = int(number_for_iter / 3) % 6;
+        if (x_increas === 0) {
+            image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        } else if (x_increas < 0) {
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        } else if (x_increas > 0) {
+            image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        }
+        // person move ends
 
         if (but_down === 1 && but_down_prev === 0) {
             main_state = 5;
@@ -204,7 +245,21 @@ function draw() {
     else if (main_state === 5) {
         image(bedroom_bed, 0, 0, windowWidth, windowHeight);
         image(sign3, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
-        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        // person move
+        if (x_increas < 0 || x_increas > 0) {
+            number_for_iter++;
+        }
+        var pic_index = int(number_for_iter / 3) % 6;
+        if (x_increas === 0) {
+            image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        } else if (x_increas < 0) {
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        } else if (x_increas > 0) {
+            image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        }
+        // person move ends
+
         // if (!sound_test.isPlaying() && times_for_audio === 0) {
         //     sound_test.play();
         //     times_for_audio += 1;
@@ -229,7 +284,20 @@ function draw() {
     else if (main_state === 6) {
         image(bedroom_bed, 0, 0, windowWidth, windowHeight);
         image(sign4, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
-        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        // person move
+        if (x_increas < 0 || x_increas > 0) {
+            number_for_iter++;
+        }
+        var pic_index = int(number_for_iter / 3) % 6;
+        if (x_increas === 0) {
+            image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        } else if (x_increas < 0) {
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        } else if (x_increas > 0) {
+            image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        }
+        // person move ends
 
         if (but_down === 1 && but_down_prev === 0) {
             main_state = 7;
@@ -248,7 +316,20 @@ function draw() {
     else if (main_state === 7) {
         image(bedroom_bed, 0, 0, windowWidth, windowHeight);
         image(sign5, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
-        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        // person move
+        if (x_increas < 0 || x_increas > 0) {
+            number_for_iter++;
+        }
+        var pic_index = int(number_for_iter / 3) % 6;
+        if (x_increas === 0) {
+            image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        } else if (x_increas < 0) {
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        } else if (x_increas > 0) {
+            image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        }
+        // person move ends
 
         if (but_down === 1 && but_down_prev === 0) {
             main_state = 8;
@@ -266,7 +347,20 @@ function draw() {
     else if (main_state === 8) {
         image(bedroom_bed, 0, 0, windowWidth, windowHeight);
         image(sign6, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
-        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        // person move
+        if (x_increas < 0 || x_increas > 0) {
+            number_for_iter++;
+        }
+        var pic_index = int(number_for_iter / 3) % 6;
+        if (x_increas === 0) {
+            image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        } else if (x_increas < 0) {
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        } else if (x_increas > 0) {
+            image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        }
+        // person move ends
 
         if (but_down === 1 && but_down_prev === 0) {
             main_state = 9;
@@ -285,7 +379,20 @@ function draw() {
     else if (main_state === 9) {
         image(bedroom_bed, 0, 0, windowWidth, windowHeight);
         image(sign7, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
-        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        // person move
+        if (x_increas < 0 || x_increas > 0) {
+            number_for_iter++;
+        }
+        var pic_index = int(number_for_iter / 3) % 6;
+        if (x_increas === 0) {
+            image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        } else if (x_increas < 0) {
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        } else if (x_increas > 0) {
+            image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        }
+        // person move ends
 
         if (but_down === 1 && but_down_prev === 0) {
             main_state = 10;
@@ -304,7 +411,20 @@ function draw() {
     else if (main_state === 10) {
         image(bedroom_bed, 0, 0, windowWidth, windowHeight);
         image(sign8, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
-        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        // person move
+        if (x_increas < 0 || x_increas > 0) {
+            number_for_iter++;
+        }
+        var pic_index = int(number_for_iter / 3) % 6;
+        if (x_increas === 0) {
+            image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        } else if (x_increas < 0) {
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        } else if (x_increas > 0) {
+            image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        }
+        // person move ends
 
         if (but_down === 1 && but_down_prev === 0) {
             main_state = 11;
@@ -323,7 +443,20 @@ function draw() {
     else if (main_state === 11) {
         image(bedroom_bed, 0, 0, windowWidth, windowHeight);
         image(sign9, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
-        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        // person move
+        if (x_increas < 0 || x_increas > 0) {
+            number_for_iter++;
+        }
+        var pic_index = int(number_for_iter / 3) % 6;
+        if (x_increas === 0) {
+            image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        } else if (x_increas < 0) {
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        } else if (x_increas > 0) {
+            image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        }
+        // person move ends
 
         if (but_down === 1 && but_down_prev === 0) {
             main_state = 12;
@@ -342,19 +475,41 @@ function draw() {
 
     // BED INITIAL
     else if (main_state === 12) {
-        if (x_increas < 0) {
-            number_for_iter++;
-        }
-
-        var pic_index = int(number_for_iter / 2) % 8;
 
         image(bedroom_bed, 0, 0, windowWidth, windowHeight);
-        image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        // person move
+        if (x_increas < 0 || x_increas > 0) {
+            number_for_iter++;
+        }
+        var pic_index = int(number_for_iter / 3) % 6;
+        if (x_increas === 0) {
+            image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        } else if (x_increas < 0) {
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        } else if (x_increas > 0) {
+            image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        }
+        // person move ends
 
         if (init_x > windowWidth * 0.6 && init_x < windowWidth * 0.7) {
             image(bedroom_bed_update, 0, 0, windowWidth, windowHeight);
-            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
             image(note_boxing, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+            // person move
+            if (x_increas < 0 || x_increas > 0) {
+                number_for_iter++;
+            }
+            var pic_index = int(number_for_iter / 3) % 6;
+            if (x_increas === 0) {
+                image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            } else if (x_increas < 0) {
+                image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+            } else if (x_increas > 0) {
+                image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            }
+            // person move ends
         }
 
         if (init_x < windowWidth * (-0.2)) {
@@ -370,22 +525,43 @@ function draw() {
     else if (main_state === 13) {
         used_for_state_15 = false;
 
-        if (x_increas < 0) {
-            number_for_iter++;
-        }
-
         if (used_for_state_13 === false) {
             init_x = windowWidth * (-0.19);
         }
 
-        var pic_index = int(number_for_iter / 2) % 8;
 
         image(bedroom_bed, 0, 0, windowWidth, windowHeight);
-        image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        // person move
+        if (x_increas < 0 || x_increas > 0) {
+            number_for_iter++;
+        }
+        var pic_index = int(number_for_iter / 3) % 6;
+        if (x_increas === 0) {
+            image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        } else if (x_increas < 0) {
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        } else if (x_increas > 0) {
+            image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        }
+        // person move ends
 
         if (init_x > windowWidth * 0.6 && init_x < windowWidth * 0.7) {
             image(bedroom_bed_update, 0, 0, windowWidth, windowHeight);
-            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            // person move
+            if (x_increas < 0 || x_increas > 0) {
+                number_for_iter++;
+            }
+            var pic_index = int(number_for_iter / 3) % 6;
+            if (x_increas === 0) {
+                image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            } else if (x_increas < 0) {
+                image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+            } else if (x_increas > 0) {
+                image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            }
+            // person move ends
             image(note_boxing, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
         }
 
@@ -408,19 +584,40 @@ function draw() {
             init_x = windowWidth * 0.7;
         }
 
-        if (x_increas < 0) {
-            number_for_iter++;
-        }
-
-        var pic_index = int(number_for_iter / 2) % 8;
 
         image(bedroom_bed, 0, 0, windowWidth, windowHeight);
-        image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        // person move
+        if (x_increas < 0 || x_increas > 0) {
+            number_for_iter++;
+        }
+        var pic_index = int(number_for_iter / 3) % 6;
+        if (x_increas === 0) {
+            image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        } else if (x_increas < 0) {
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        } else if (x_increas > 0) {
+            image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        }
+        // person move ends
 
         if (init_x > windowWidth * 0.6 && init_x < windowWidth * 0.7) {
             image(bedroom_bed_update, 0, 0, windowWidth, windowHeight);
-            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
             image(note_boxing, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+            // person move
+            if (x_increas < 0 || x_increas > 0) {
+                number_for_iter++;
+            }
+            var pic_index = int(number_for_iter / 3) % 6;
+            if (x_increas === 0) {
+                image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            } else if (x_increas < 0) {
+                image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+            } else if (x_increas > 0) {
+                image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            }
+            // person move ends
         }
 
         if (init_x < windowWidth * (-0.2)) {
@@ -447,7 +644,20 @@ function draw() {
         }
 
         image(bedroom_posterwall, 0, 0, windowWidth, windowHeight);
-        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        // person move
+        if (x_increas < 0 || x_increas > 0) {
+            number_for_iter++;
+        }
+        var pic_index = int(number_for_iter / 3) % 6;
+        if (x_increas === 0) {
+            image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        } else if (x_increas < 0) {
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        } else if (x_increas > 0) {
+            image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        }
+        // person move ends
 
         if (init_x > windowWidth * (0.8)) {
             main_state = 13;
@@ -455,11 +665,68 @@ function draw() {
 
         used_for_state_15 = true;
 
-        // if (init_x > windowWidth * 0.6 && init_x < windowWidth * 0.7) {
-        //     image(bedroom_bed_update, 0, 0, windowWidth, windowHeight);
-        //     image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
-        //     image(note_boxing, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8)
-        // }
+        if (init_x > windowWidth * 0.5 && init_x < windowWidth * 0.62) {
+            image(bedroom_posterwall_update_1, 0, 0, windowWidth, windowHeight);
+            // person move
+            if (x_increas < 0 || x_increas > 0) {
+                number_for_iter++;
+            }
+            var pic_index = int(number_for_iter / 3) % 6;
+            if (x_increas === 0) {
+                image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            } else if (x_increas < 0) {
+                image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+            } else if (x_increas > 0) {
+                image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            }
+            // person move ends
+            if (but_down === 1) {
+                image(poster_1, 0, 0, windowWidth, windowHeight);
+            }
+        }
+
+        if (init_x > windowWidth * 0.1 && init_x < windowWidth * 0.2) {
+            image(bedroom_posterwall_update_2, 0, 0, windowWidth, windowHeight);
+            // person move
+            if (x_increas < 0 || x_increas > 0) {
+                number_for_iter++;
+            }
+            var pic_index = int(number_for_iter / 3) % 6;
+            if (x_increas === 0) {
+                image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            } else if (x_increas < 0) {
+                image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+            } else if (x_increas > 0) {
+                image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            }
+            // person move ends
+            if (but_down === 1) {
+                image(poster_2, 0, 0, windowWidth, windowHeight);
+            }
+        }
+
+        if (init_x > windowWidth * (-0.15) && init_x < windowWidth * (0)) {
+            image(bedroom_posterwall_update_3, 0, 0, windowWidth, windowHeight);
+            // person move
+            if (x_increas < 0 || x_increas > 0) {
+                number_for_iter++;
+            }
+            var pic_index = int(number_for_iter / 3) % 6;
+            if (x_increas === 0) {
+                image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            } else if (x_increas < 0) {
+                image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+            } else if (x_increas > 0) {
+                image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            }
+            // person move ends
+            if (but_down === 1) {
+                image(poster_3, 0, 0, windowWidth, windowHeight);
+            }
+        }
 
 
     }
@@ -475,7 +742,20 @@ function draw() {
         }
 
         image(bedroom_tvwall, 0, 0, windowWidth, windowHeight);
-        image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        // person move
+        if (x_increas < 0 || x_increas > 0) {
+            number_for_iter++;
+        }
+        var pic_index = int(number_for_iter / 3) % 6;
+        if (x_increas === 0) {
+            image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        } else if (x_increas < 0) {
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        } else if (x_increas > 0) {
+            image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        }
+        // person move ends
 
         if (init_x < windowWidth * (-0.2)) {
             main_state = 14;
