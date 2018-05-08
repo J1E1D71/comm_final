@@ -477,6 +477,8 @@ function draw() {
 
     }
 
+
+    // MAP
     if (but_up === 1 && but_up_prev === 0) {
         show_map = true;
         but_down_prev = 1;
