@@ -2,9 +2,11 @@ var serial;
 var latestData = "waiting for data";
 var init_x = 500;
 var init_y = 600;
-var state = 1;
+var main_state = 1;
 var intro_video;
 var delay;
+var but_down;
+var but_down_prev;
 
 
 function setup() {
@@ -27,6 +29,8 @@ function setup() {
     intro_video.autoplay();
 
     delay = new p5.Delay();
+
+    but_down = 0;
 
 }
 
@@ -74,26 +78,26 @@ function draw() {
     var acc_x = parseInt(total_data[2]);
     var acc_y = parseInt(total_data[3]);
     var acc_x = parseInt(total_data[4]);
-    var but_down = parseInt(total_data[5]);
+    // var but_down = parseInt(total_data[5]);
     var but_up = parseInt(total_data[6]);
 
-    console.log(state);
+    // console.log(main_state);
+    console.log("but_down" + but_down);
+    console.log("but_down_prev" + but_down_prev);
 
 
-
-    if (state === 1) {
+    if (main_state === 1) {
         image(intro_video, 0, 0, windowWidth, windowHeight);
         intro_video.onended(function () {
-            state = 2;
+            main_state = 2;
         })
 
-        if (but_down === 1) {
-            state = 2;
-            but_down = 0;
+        if (but_down === 1 && but_down_prev === 0) {
+            main_state = 2;
         }
     }
 
-    if (state === 2) {
+    if (main_state === 2) {
         textAlign(CENTER, CENTER);
         textSize(320);
         fill(0);
@@ -101,23 +105,17 @@ function draw() {
         text('of', windowWidth / 2, windowHeight / 2);
         text('Life', windowWidth / 2, windowHeight / 2 + 300);
 
-        if (but_down === 1) {
-            state = 3;
-            but_down = 0;
+        if (but_down === 1 && but_down_prev === 0) {
+            main_state = 3;
         }
     }
 
-    if (state === 3) {
+    if (main_state === 3) {
         image(img1, 0, 0, windowWidth, windowHeight);
 
     }
 
 
-
-
-
-
-    // noFill();
     strokeWeight(3);
     ellipse(init_x, init_y, 20, 20);
 
@@ -127,19 +125,16 @@ function draw() {
     init_x += x_increas;
     init_y -= y_increas;
 
+    but_down_prev = but_down;
 
 
 
-
-
-    // Polling method
-    /*
-    if (serial.available() > 0) {
-    var data = serial.read();
-    ellipse(50,50,data,data);
 }
-*/
 
-    // delay.delayTime(1);
-
+function keyPressed() {
+    if (keyCode === 80) {
+        but_down = 1;
+    } else {
+        but_down = 0;
+    }
 }
