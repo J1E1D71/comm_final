@@ -18,7 +18,14 @@ How can you run the game
 3. Open Arduino and load the code under the folder `./wiichuck-arduino` and upload the code to your board.
 
 4. Check the name of the serial port your Arduino is using and change it in `main/sketch.js` to match yours. In my case, my serial port name is `/dev/tty.usbmodem1421`, and yours should look like that.
-5. Open terminal, change the directory to this folder, install the dependencies with: `npm install` and start the server with: `node startserver.js`
+5. Open terminal, change the directory to this folder, install the dependencies with: 
+```
+npm install
+``` 
+and start the server with: 
+```
+node startserver.js
+```
 6. Open another tab in terminal under that same directory, and build your local server to host the website. If you have Python installed on your machine, the simpliest way is to run 
 ```
 python -m SimpleHTTPServer
@@ -27,6 +34,8 @@ in the terminal. And if you are using Python 3, use this instead:
 ```
 python -m http.server
 ```
+And more Options are offered [here][11].
+
 7. Open your broweser and enter the page. In my case, I just need to visit `http://localhost:8000/main/` and the game will start. 
 
 
@@ -180,3 +189,4 @@ To generate documentation, install yuidoc (`npm install -g yuidocjs`) and run
 [8]:	https://github.com/vanevery/p5.serialport/tree/master/examples
 [9]:	https://github.com/vanevery/p5.serialport/tree/master/examples
 [10]:	http://vanevery.github.io/p5.serialport/docs/classes/p5.serialport.html
+[11]: https://github.com/processing/p5.js/wiki/Local-server
