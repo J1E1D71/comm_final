@@ -3,7 +3,10 @@ The Game of Life
 
 The Game of Life is a interactive web game created by Dylan Wang and Antonia Li designed with [p5.js][1].
 
-# What do you need to run this game
+What do you need to run this game
+---- 
+- A Computer.
+- 
 
 
 
