@@ -1,7 +1,7 @@
 The Game of Life
 =============
 
-The Game of Life is a interactive web game created by Dylan Wang and Antonia Li designed with [p5.js][1].
+The Game of Life is an interactive web game created by Dylan Wang and Antonia Li designed with [p5.js][1].
 
 What do you need to run this game
 ---- 
@@ -13,7 +13,7 @@ What do you need to run this game
 How can you run the game
 ---- 
 1. Download or clone this GitHub repository to your computer.
-2. Connect you Arduino board with your Nintendo Wii Nunchuck using the WiiChuck Adapter as the following circuit.
+2. Connect your Arduino board with your Nintendo Wii Nunchuck using the WiiChuck Adapter as the following circuit.
 ![img_3083](https://user-images.githubusercontent.com/32665343/39795282-b5fdf308-5381-11e8-8b3b-9a062f12f930.JPG)
 3. Open Arduino and load the code under the folder `./wiichuck-arduino` and upload the code to your board.
 
@@ -26,7 +26,7 @@ and start the server with:
 ```
 node startserver.js
 ```
-6. Open another tab in terminal under that same directory, and build your local server to host the website. If you have Python installed on your machine, the simpliest way is to run this in the terminal.
+6. Open another tab in terminal under that same directory, and build your local server to host the website. If you have Python installed on your machine, the simplest way is to run this in the terminal.
 ```
 python -m SimpleHTTPServer
 ```
@@ -41,10 +41,10 @@ And more Options are offered [here][11].
 Things worth mentioning
 ---- 
 - Because of the large size of the video clips used in this project, the page may need around one minute to load. Please be patient :)
-- Firefox is highly recommanded because of built-in [p5.js][1] development issues.
-- 
+- Firefox is highly recommended because of built-in [p5.js][1] development issues.
+- Trust yourself that you are not a robot.
 
-Special Credits
+Credits
 ---- 
 - @vanevery for the [Serial Port API and Server for p5.js][5].
 - Prof. Rodolfo Cossovich at NYU Shanghai for the [Nintendo Wii Nunchuck Arduino code][6].
