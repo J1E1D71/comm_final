@@ -19,6 +19,9 @@ var used_for_state_15 = false;
 var used_for_state_16 = false;
 var used_for_state_17 = false;
 var used_for_state_29 = false;
+var used_for_state_150 = false;
+var used_for_state_280 = false;
+var used_for_state_2800 = false;
 var show_map = false;
 var times_of_but_up = 0;
 var times_for_audio = 0;
@@ -121,7 +124,7 @@ function setup() {
     sign20 = loadImage("media/pics/sign_20.jpg");
 
     note_boxing = loadImage("media/pics/note_boxing.jpg");
-    note_poster = loadImage("media/pics/note_poster.jpg");
+    // note_poster = loadImage("media/pics/note_poster.jpg");
 
     map_1 = loadImage("media/pics/map_1.png")
     map_1 = loadImage("media/pics/map_2.png")
@@ -587,8 +590,10 @@ function draw() {
     }
 
     // BED FROM LEFT
+
     else if (main_state === 13) {
         used_for_state_15 = false;
+        used_for_state_150 = false;
 
         if (used_for_state_13 === false) {
             init_x = windowWidth * (-0.19);
@@ -807,6 +812,109 @@ function draw() {
         }
 
 
+    }
+
+
+    // POSTER WALL FROM HALLWAY
+    else if (main_state === 150) {
+
+        used_for_state_280 = false;
+        used_for_state_2800 = false;
+
+        if (used_for_state_150 === false) {
+            init_x = windowWidth * (-0.19);
+        }
+
+        image(bedroom_posterwall, 0, 0, windowWidth, windowHeight);
+        // person move
+        if (x_increas < 0 || x_increas > 0) {
+            number_for_iter++;
+        }
+        var pic_index = int(number_for_iter / 3) % 6;
+        if (x_increas === 0) {
+            image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        } else if (x_increas < 0) {
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        } else if (x_increas > 0) {
+            image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        }
+        // person move ends
+
+        if (init_x > windowWidth * 0.5 && init_x < windowWidth * 0.62) {
+            image(bedroom_posterwall_update_1, 0, 0, windowWidth, windowHeight);
+            // person move
+            if (x_increas < 0 || x_increas > 0) {
+                number_for_iter++;
+            }
+            var pic_index = int(number_for_iter / 3) % 6;
+            if (x_increas === 0) {
+                image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            } else if (x_increas < 0) {
+                image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+            } else if (x_increas > 0) {
+                image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            }
+            // person move ends
+            if (but_down === 1) {
+                image(poster_1, 0, 0, windowWidth, windowHeight);
+                image(poster_1_note, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+            }
+        }
+
+        if (init_x > windowWidth * 0.1 && init_x < windowWidth * 0.2) {
+            image(bedroom_posterwall_update_2, 0, 0, windowWidth, windowHeight);
+            // person move
+            if (x_increas < 0 || x_increas > 0) {
+                number_for_iter++;
+            }
+            var pic_index = int(number_for_iter / 3) % 6;
+            if (x_increas === 0) {
+                image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            } else if (x_increas < 0) {
+                image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+            } else if (x_increas > 0) {
+                image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            }
+            // person move ends
+            if (but_down === 1) {
+                image(poster_2, 0, 0, windowWidth, windowHeight);
+                image(poster_2_note, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+            }
+        }
+
+        if (init_x > windowWidth * (-0.15) && init_x < windowWidth * (0)) {
+            image(bedroom_posterwall_update_3, 0, 0, windowWidth, windowHeight);
+            // person move
+            if (x_increas < 0 || x_increas > 0) {
+                number_for_iter++;
+            }
+            var pic_index = int(number_for_iter / 3) % 6;
+            if (x_increas === 0) {
+                image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            } else if (x_increas < 0) {
+                image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+            } else if (x_increas > 0) {
+                image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            }
+            // person move ends
+            if (but_down === 1) {
+                image(poster_3, 0, 0, windowWidth, windowHeight);
+                image(poster_3_note, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+            }
+        }
+
+        if (init_x <= windowWidth * (-0.2)) {
+            main_state = 280;
+
+        }
+        if (init_x > windowWidth * (0.8)) {
+            main_state = 13;
+        }
+        used_for_state_150 = true;
     }
 
 
@@ -1290,6 +1398,7 @@ function draw() {
 
     // NORMAL HALLWAY
     else if (main_state === 28) {
+        used_for_state_150 = false;
 
         image(hallway, 0, 0, windowWidth, windowHeight);
 
@@ -1332,15 +1441,133 @@ function draw() {
 
 
         if (init_x > windowWidth * (0.7)) {
-            main_state = 15;
-
-
-            // HUGE BUG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            main_state = 150;
         }
-
         if (init_x < windowWidth * (-0.2)) {
             main_state = 29;
         }
+
+    }
+
+    // HALLWAY Enter from right
+    else if (main_state === 280) {
+        used_for_state_150 = false;
+
+        if (used_for_state_280 === false) {
+            init_x = windowWidth * 0.7;
+        }
+
+        image(hallway, 0, 0, windowWidth, windowHeight);
+
+        // person move
+        if (x_increas < 0 || x_increas > 0) {
+            number_for_iter++;
+        }
+        var pic_index = int(number_for_iter / 3) % 6;
+        if (x_increas === 0) {
+            image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        } else if (x_increas < 0) {
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        } else if (x_increas > 0) {
+            image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        }
+        // person move ends
+
+        if (init_x > windowWidth * 0.1 && init_x < windowWidth * 0.35) {
+            image(hallway_update, 0, 0, windowWidth, windowHeight);
+            // person move
+            if (x_increas < 0 || x_increas > 0) {
+                number_for_iter++;
+            }
+            var pic_index = int(number_for_iter / 3) % 6;
+            if (x_increas === 0) {
+                image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            } else if (x_increas < 0) {
+                image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+            } else if (x_increas > 0) {
+                image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            }
+            // person move ends
+            if (but_down === 1) {
+                image(poster_4, 0, 0, windowWidth, windowHeight);
+                image(poster_4_note, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+            }
+        }
+
+
+        if (init_x > windowWidth * (0.7)) {
+            main_state = 150;
+        }
+        if (init_x < windowWidth * (-0.2)) {
+            main_state = 29;
+        }
+
+        used_for_state_280 = true;
+
+    }
+
+
+
+    // HALLWAY Enter from left
+    else if (main_state === 2800) {
+        used_for_state_150 = false;
+        used_for_state_29 = false;
+        console.log("In 2800!!!!!!!!!,",used_for_state_29);
+
+        if (used_for_state_2800 === false){
+            init_x = windowWidth * (-0.19);
+        }
+
+        image(hallway, 0, 0, windowWidth, windowHeight);
+
+        // person move
+        if (x_increas < 0 || x_increas > 0) {
+            number_for_iter++;
+        }
+        var pic_index = int(number_for_iter / 3) % 6;
+        if (x_increas === 0) {
+            image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        } else if (x_increas < 0) {
+            image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+        } else if (x_increas > 0) {
+            image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+        }
+        // person move ends
+
+        if (init_x > windowWidth * 0.1 && init_x < windowWidth * 0.35) {
+            image(hallway_update, 0, 0, windowWidth, windowHeight);
+            // person move
+            if (x_increas < 0 || x_increas > 0) {
+                number_for_iter++;
+            }
+            var pic_index = int(number_for_iter / 3) % 6;
+            if (x_increas === 0) {
+                image(stand, init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            } else if (x_increas < 0) {
+                image(left_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+
+            } else if (x_increas > 0) {
+                image(right_pics[pic_index], init_x, windowHeight * 0.2, 1000 * 0.6, 1772 * 0.6);
+            }
+            // person move ends
+            if (but_down === 1) {
+                image(poster_4, 0, 0, windowWidth, windowHeight);
+                image(poster_4_note, windowWidth * 0.04, windowHeight * 0.04, 769 * 0.8, 207 * 0.8);
+            }
+        }
+
+
+        if (init_x > windowWidth * (0.7)) {
+            main_state = 150;
+        }
+        if (init_x < windowWidth * (-0.2)) {
+            main_state = 29;
+        }
+
+        used_for_state_2800 = true;
 
     }
 
@@ -1348,6 +1575,8 @@ function draw() {
 
     // Living Room
     else if (main_state === 29) {
+        used_for_state_280 = false;
+        used_for_state_2800 = false;
 
         if (used_for_state_29 === false) {
             init_x = windowWidth * 0.7;
@@ -1395,7 +1624,7 @@ function draw() {
 
 
         if (init_x > windowWidth * (0.7)) {
-            main_state = 28;
+            main_state = 2800;
         }
         if (init_x < windowWidth * (-0.2)) {
             init_x = windowWidth * (-0.2)
