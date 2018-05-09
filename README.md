@@ -48,7 +48,7 @@ Special Credits
 ---- 
 - @vanevery for the [Serial Port API and Server for p5.js][5].
 - Prof. Rodolfo Cossovich at NYU Shanghai for the [Nintendo Wii Nunchuck Arduino code][6].
-- My partner Xiaonan Li.
+- My partner Antonia Li for creating all the media used in this project.
 - Prof. Ann Chen at NYU Shanghai.
 
 
