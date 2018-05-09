@@ -13,7 +13,7 @@ What do you need to run this game
 How can you run the game
 ---- 
 1. Download or clone this GitHub repository to your computer.
-2. Open Arduino and 
+2. Open Arduino and load the code under the folder ./wiichuck-arduino as shown in the following screenshot.
 
 
 
