@@ -5,8 +5,15 @@ The Game of Life is a interactive web game created by Dylan Wang and Antonia Li 
 
 What do you need to run this game
 ---- 
-- A Computer.
-- 
+- A Computer running either Windows or Mac OS.
+- [Arduino][2], an open-source electronics platform based on easy-to-use hardware and software.
+- [An Nintendo Wii Nunchuck][3].
+- [The WiiChuck Adapter (Arduino Compatible)][4].
+
+How can you run the game
+---- 
+1. Download or clone this GitHub repository to your computer.
+2. Open Arduino and 
 
 
 
@@ -23,19 +30,19 @@ What do you need to run this game
 p5.serialport 
 =============
 
-A [p5.js][2] library that enables communication between your p5 sketch and Arduino (or another serial enabled device). 
+A [p5.js][5] library that enables communication between your p5 sketch and Arduino (or another serial enabled device). 
 
 What Does it Do?
 ---- 
 
-p5.serialport more or less clones the [Processing Serial Library API][3]. As JavaScript in a browser can not interact directly with a serial port, this library solves this. p5.serialport comes in two flavors; one is a simple app, this is good for all skill levels and is the easiest to use; second is Node.js based WebSocket server, this is for more skilled advanced users or someone who needs heavy customization.
+p5.serialport more or less clones the [Processing Serial Library API][6]. As JavaScript in a browser can not interact directly with a serial port, this library solves this. p5.serialport comes in two flavors; one is a simple app, this is good for all skill levels and is the easiest to use; second is Node.js based WebSocket server, this is for more skilled advanced users or someone who needs heavy customization.
 
 p5.serial App
 ---- 
 
-To begin download and run a [release of p5.serialcontrol][4]. This application incorporates p5.serialserver in a GUI application for MacOS and Windows.
+To begin download and run a [release of p5.serialcontrol][7]. This application incorporates p5.serialserver in a GUI application for MacOS and Windows.
 
-Once you have the application launched load one of the [examples/][5] in your browser to see it in action.  
+Once you have the application launched load one of the [examples/][8] in your browser to see it in action.  
 
 * You'll likely have to change the name of the serial port in the examples to the one your Arduino is using.
 
@@ -50,14 +57,14 @@ Clone or download this repo and install the dependencies with: `npm install` and
 
 Alternatively, you can install the server globally via npm with `sudo npm install -g p5.serialserver`  and then run it with `p5serial` or locally with `npm install p5.serialserver` and run it from the node\_modules directory with `node startserver.js`
 
-Then load one of the [examples/][6] in your browser to see it in action.  
+Then load one of the [examples/][9] in your browser to see it in action.  
 
 * You'll likely have to change the name of the serial port in the examples to the one your Arduino is using.
 
 API
 ---
 
-[API documentation now available][7]
+[API documentation now available][10]
 
 The basics:
 ```javascript
@@ -150,9 +157,12 @@ To generate documentation, install yuidoc (`npm install -g yuidocjs`) and run
 `yuidoc -c yuidoc.json ./lib`
 
 [1]:	http://p5js.org/
-[2]:	http://p5js.org/
-[3]:	https://processing.org/reference/libraries/serial/index.html
-[4]:	https://github.com/vanevery/p5.serialcontrol/releases
-[5]:	https://github.com/vanevery/p5.serialport/tree/master/examples
-[6]:	https://github.com/vanevery/p5.serialport/tree/master/examples
-[7]:	http://vanevery.github.io/p5.serialport/docs/classes/p5.serialport.html
+[2]:	https://www.arduino.cc
+[3]:	https://www.amazon.com/Wii-Nunchuk-Controller-White-nintendo/dp/B000IMYKQ0?th=1
+[4]:	https://www.dfrobot.com/product-91.html
+[5]:	http://p5js.org/
+[6]:	https://processing.org/reference/libraries/serial/index.html
+[7]:	https://github.com/vanevery/p5.serialcontrol/releases
+[8]:	https://github.com/vanevery/p5.serialport/tree/master/examples
+[9]:	https://github.com/vanevery/p5.serialport/tree/master/examples
+[10]:	http://vanevery.github.io/p5.serialport/docs/classes/p5.serialport.html
