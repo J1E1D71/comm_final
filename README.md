@@ -13,7 +13,12 @@ What do you need to run this game
 How can you run the game
 ---- 
 1. Download or clone this GitHub repository to your computer.
-2. Open Arduino and load the code under the folder ./wiichuck-arduino as shown in the following screenshot.
+2. Connect you Arduino board with your Nintendo Wii Nunchuck using the WiiChuck Adapter as the following circuit.
+![img_3083](https://user-images.githubusercontent.com/32665343/39795282-b5fdf308-5381-11e8-8b3b-9a062f12f930.JPG)
+3. Open Arduino and load the code under the folder ./wiichuck-arduino as shown in the following screenshot and upload the code to your board.
+<img width="800" alt="screen shot 2018-05-09 at 11 57 00" src="https://user-images.githubusercontent.com/32665343/39795156-d4342df2-5380-11e8-98a9-6eebbebd869d.png">
+4. 
+
 
 
 
