@@ -26,8 +26,8 @@ var count_for_text = 0;
 function preload() {
     sound_test = loadSound("media/audios/test.wav");
     sound_test_2 = loadSound("media/audios/test_2.wav");
-    // intro_video = createVideo(['media/videos/Intro_sequence.mp4']);
-    // intro_video.hide();
+    intro_video = createVideo(['media/videos/Intro_sequence.mp4']);
+    intro_video.hide();
 
 }
 
@@ -101,7 +101,10 @@ function setup() {
     note_boxing = loadImage("media/pics/note_boxing.jpg");
     note_poster = loadImage("media/pics/note_poster.jpg");
 
-    map_1 = loadImage("media/pics/map.png")
+    map_1 = loadImage("media/pics/map_1.png")
+    map_1 = loadImage("media/pics/map_2.png")
+    map_1 = loadImage("media/pics/map_3.png")
+    
 
     // sound_test.play();
 }
@@ -162,11 +165,11 @@ function draw() {
         // if (!intro_video.isPlaying()){
         //     intro_video.play();
         // }
-        // intro_video.play();
+        intro_video.play();
 
-        // intro_video.onended(function () {
-        //     main_state = 2;
-        // })
+        intro_video.onended(function () {
+            main_state = 2;
+        })
 
         if (but_down === 1 && but_down_prev === 0) {
             main_state = 2;
