@@ -26,11 +26,11 @@ and start the server with:
 ```
 node startserver.js
 ```
-6. Open another tab in terminal under that same directory, and build your local server to host the website. If you have Python installed on your machine, the simpliest way is to run 
+6. Open another tab in terminal under that same directory, and build your local server to host the website. If you have Python installed on your machine, the simpliest way is to run this in the terminal.
 ```
 python -m SimpleHTTPServer
 ```
-in the terminal. And if you are using Python 3, use this instead:
+And if you are using Python 3, use this instead:
 ```
 python -m http.server
 ```
@@ -38,10 +38,24 @@ And more Options are offered [here][11].
 
 7. Open your browser and enter the page. In my case, I just need to visit `http://localhost:8000/main/` and the game will start. 
 
+Things worth mentioning
+---- 
+- Because of the large size of the video clips used in this project, the page may need around one minute to load. Please be patient :)
+- Firefox is highly recommanded because of built-in [p5.js][1] development issues.
+- 
+
+Special Credits
+---- 
+- @vanevery for the [Serial Port API and Server for p5.js][5].
+- Prof. Rodolfo Cossovich at NYU Shanghai for the [Nintendo Wii Nunchuck Arduino code][6].
+- My partner Xiaonan Li.
+- Prof. Ann Chen at NYU Shanghai.
 
 
 [1]:	http://p5js.org/
 [2]:	https://www.arduino.cc
 [3]:	https://www.amazon.com/Wii-Nunchuk-Controller-White-nintendo/dp/B000IMYKQ0?th=1
 [4]:	https://www.dfrobot.com/product-91.html
+[5]: https://github.com/vanevery/p5.serialport
+[6]: https://github.com/todocono/wiichuck
 [11]: https://github.com/processing/p5.js/wiki/Local-server
